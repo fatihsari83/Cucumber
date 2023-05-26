@@ -1,5 +1,6 @@
 package stepdefinitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -56,5 +57,32 @@ public class AmazonStepDefinitions {
         String actualTitle = Driver.getDriver().getTitle();
         String expectedTitle= "Amazon";
         Assert.assertTrue(actualTitle.contains(expectedTitle));
+    }
+
+    @Given("Kullanici {string} anasayfaya gider")
+    public void kullaniciAnasayfayaGider(String istenenUrl) {
+        Driver.getDriver().get(ConfigReader.getProperty(istenenUrl));
+    }
+
+    @When("{string} icin arama yapar")
+    public void icinAramaYapar(String aranacakKelime) {
+        amazonPage.aramaKutusu.sendKeys(aranacakKelime+Keys.ENTER);
+    }
+
+    @Then("Arama sonuclarinin {string} icerdigini test eder")
+    public void aramaSonuclarininIcerdiginiTestEder(String expectedIcerik) {
+        String actualAramaSonucu = amazonPage.aramaSonucuElementi.getText();
+        Assert.assertTrue(actualAramaSonucu.contains(expectedIcerik));
+    }
+
+    @And("{int} saniye bekler")
+    public void saniyeBekler(int beklenecekSaniye) {
+        // cucumber sayi yazildiginde patametre olarak kabul eder
+
+        try {
+            Thread.sleep(beklenecekSaniye);
+        } catch (InterruptedException e) {
+
+        }
     }
 }
