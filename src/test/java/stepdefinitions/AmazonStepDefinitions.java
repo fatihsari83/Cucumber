@@ -57,12 +57,14 @@ public class AmazonStepDefinitions {
         String actualTitle = Driver.getDriver().getTitle();
         String expectedTitle= "Amazon";
         Assert.assertTrue(actualTitle.contains(expectedTitle));
+
     }
 
     @Given("Kullanici {string} anasayfaya gider")
     public void kullaniciAnasayfayaGider(String istenenUrl) {
         Driver.getDriver().get(ConfigReader.getProperty(istenenUrl));
     }
+
 
     @When("{string} icin arama yapar")
     public void icinAramaYapar(String aranacakKelime) {
@@ -77,7 +79,7 @@ public class AmazonStepDefinitions {
 
     @And("{int} saniye bekler")
     public void saniyeBekler(int beklenecekSaniye) {
-        // cucumber sayi yazildiginde patametre olarak kabul eder
+        // cucumber sayi yazildiginde parametre olarak kabul eder
 
         try {
             Thread.sleep(beklenecekSaniye);
@@ -85,4 +87,19 @@ public class AmazonStepDefinitions {
 
         }
     }
+    @Then("ilk urune click yapar")
+    public void ilk_urune_click_yapar() {
+        amazonPage.ilkUrunlementi.click();
+
+
+    }
+    @Then("acilan urun isminin {string} ıcerdigini test eder")
+    public void acilan_urun_isminin_ıcerdigini_test_eder(String arananKelime) {
+
+        String actualUrunIsmi= amazonPage.ilkUeunIsimElementi.getText();
+
+        Assert.assertTrue(actualUrunIsmi.contains(arananKelime));
+
+
+}
 }

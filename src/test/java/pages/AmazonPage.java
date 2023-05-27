@@ -38,6 +38,12 @@ public class AmazonPage {
     @FindBy (xpath = "//table/tbody/tr[1]/td")
     public List <WebElement> sutunSayisiElementi;
 
+    @FindBy (xpath = "//*[@data-image-index='1']")
+    public WebElement ilkUrunlementi ;
+
+    @FindBy(xpath = "//span[@id='productTitle']")//span[@id=‘productTitle’]
+    public WebElement ilkUeunIsimElementi;
+
 
 
 }

@@ -1,5 +1,5 @@
 Feature: 1001_Cucumber Amazon Search Test
-
+  @smoke
   Scenario: TC01 Amazon Nutella Testi
 
     Given Kullanici amazon anasayfaya gider
